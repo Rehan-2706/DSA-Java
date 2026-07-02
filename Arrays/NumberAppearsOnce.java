@@ -1,6 +1,6 @@
 
 // This approach works only when every element appears exactly twice
-// except one element, which appears only once.import java.util.Scanner;
+// except one element, which appears only once.
 import java.util.*;
 
 public class NumberAppearsOnce {
