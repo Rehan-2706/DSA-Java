@@ -5,40 +5,24 @@ public class FourSumBetter {
     static List<List<Integer>> getQuads(int[] arr, int target) {
 
         int n = arr.length;
-        Set<List<Integer>> answer = new HashSet<>();
 
-        for (int i = 0; i < n - 3; i++) {
+        HashSet<List<Integer>> answer = new HashSet<>();
 
-            for (int j = i + 1; j < n - 2; j++) {
-
-                HashSet<Long> seen = new HashSet<>();
-
+        for (int i = 0; i < n; i++) {
+            for (int j = i + 1; j < n; j++) {
+                HashSet<Integer> set = new HashSet<>();
                 for (int k = j + 1; k < n; k++) {
+                    long required = (long) target - (arr[i] + arr[j] + arr[k]);
 
-                    long required = (long) target
-                            - arr[i]
-                            - arr[j]
-                            - arr[k];
-
-                    if (seen.contains(required)) {
-
-                        List<Integer> quad = Arrays.asList(
-                                arr[i],
-                                arr[j],
-                                arr[k],
-                                (int) required
-                        );
-
-                        Collections.sort(quad);
-                        answer.add(quad);
+                    if (set.contains((int) required)) {
+                        List<Integer> temp = Arrays.asList(arr[i], arr[j], arr[k], (int) required);
+                        Collections.sort(temp);
+                        answer.add(temp);
                     }
-
-                    // Store the current element for future iterations
-                    seen.add((long) arr[k]);
+                    set.add(arr[k]);
                 }
             }
         }
-
         return new ArrayList<>(answer);
     }
 
