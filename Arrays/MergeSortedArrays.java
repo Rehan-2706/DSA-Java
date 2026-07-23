@@ -1,44 +1,58 @@
-import java.util.Arrays;
+import java.util.Scanner;
 
 public class MergeSortedArrays {
 
+    // Static merge method
     static void merge(int[] nums1, int m, int[] nums2, int n) {
 
-        int i = m - 1;         // Last valid element in nums1
-        int j = n - 1;         // Last element in nums2
-        int k = m + n - 1;     // Last index of nums1
+        int i = m - 1;
+        int j = n - 1;
+        int k = m + n - 1;
 
-        // Merge from the end
         while (i >= 0 && j >= 0) {
             if (nums1[i] > nums2[j]) {
-                nums1[k] = nums1[i];
-                i--;
+                nums1[k--] = nums1[i--];
             } else {
-                nums1[k] = nums2[j];
-                j--;
+                nums1[k--] = nums2[j--];
             }
-            k--;
         }
 
-        // Copy remaining elements of nums2 (if any)
         while (j >= 0) {
-            nums1[k] = nums2[j];
-            j--;
-            k--;
+            nums1[k--] = nums2[j--];
         }
     }
 
     public static void main(String[] args) {
 
-        int[] nums1 = {1, 2, 3, 0, 0, 0};
-        int m = 3;
+        Scanner sc = new Scanner(System.in);
 
-        int[] nums2 = {2, 5, 6};
-        int n = 3;
+        System.out.print("Enter number of elements in nums1 (m): ");
+        int m = sc.nextInt();
 
-        merge(nums1, m, nums2, n);
+        System.out.print("Enter number of elements in nums2 (n): ");
+        int n = sc.nextInt();
+
+        int[] nums1 = new int[m + n];
+        int[] nums2 = new int[n];
+
+        System.out.println("Enter " + m + " sorted elements of nums1:");
+        for (int i = 0; i < m; i++) {
+            nums1[i] = sc.nextInt();
+        }
+
+        System.out.println("Enter " + n + " sorted elements of nums2:");
+        for (int i = 0; i < n; i++) {
+            nums2[i] = sc.nextInt();
+        }
+
+        // Calling static method using class name
+        MergeSortedArrays.merge(nums1, m, nums2, n);
 
         System.out.println("Merged Array:");
-        System.out.println(Arrays.toString(nums1));
+        for (int num : nums1) {
+            System.out.print(num + " ");
+        }
+
+        sc.close();
     }
 }
