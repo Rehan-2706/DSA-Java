@@ -16,19 +16,19 @@ public class LowerBound {
         System.out.println("Lower Bound : "+index);
     }
     static int getLowerBound(int arr[],int target){
-        int low=0;
-        int high=arr.length-1;
-        int lowBound=arr.length;
-        while (low<=high) {
-            int mid=low+(high-low)/2;
-            if (arr[mid]>=target) {
-                lowBound=mid;
-                high=mid-1;
-            }else{
-                low=mid+1;
+            int low=0;
+            int high=arr.length-1;
+            int lowBound=arr.length;
+            while (low<=high) {
+                int mid=low+(high-low)/2;
+                if (arr[mid]>=target) {
+                    lowBound=mid;
+                    high=mid-1;
+                }else{
+                    low=mid+1;
+                }
+                
             }
-            
-        }
-        return lowBound;
+            return lowBound;
     }
 }
